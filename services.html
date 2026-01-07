@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - FinTrack</title>
+<link rel="icon" type="image/png" href="ft.png">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #e0e7ff; /* light gray-blue background */
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #3b82f6; /* primary blue */
+      margin-bottom: 10px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    p.description {
+      text-align: center;
+      color: #1e40af; /* dark blue text */
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+      position: relative;
+      border: 2px solid transparent;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-color: #3b82f6; /* blue border on hover */
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      color: #3b82f6; /* primary blue */
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p.short {
+      color: #1e40af; /* dark blue text */
+    }
+
+    .card p.details {
+      display: none;
+      margin-top: 15px;
+      color: #1e3a8a; /* slightly darker blue */
+    }
+
+    .card.active p.details {
+      display: block;
+    }
+header{
+  width: 100%;
+  background: #2563eb;
+}
+
+.navbar{
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.logo{
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.nav-links{
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links li{
+  position: relative;
+}
+
+.nav-links li a{
+  text-decoration: none;
+  color: white;
+  padding: 8px 12px;
+  display: block;
+  border-radius: 6px;
+}
+
+.nav-links li a:hover{
+  background: white;
+  color: #2563eb;
+}
+
+/* Buttons */
+.btn.login{
+  background: white;
+  color: #2563eb;
+}
+
+.btn.signup{
+  background: #1e40af;
+}
+
+/* Dropdown */
+.dropdown-menu{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  list-style: none;
+  padding: 10px 0;
+  border-radius: 10px;
+  min-width: 180px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  display: none;
+  z-index: 5;
+}
+
+.dropdown-menu li a{
+  color: #2563eb;
+  padding: 10px 15px;
+}
+
+.dropdown-menu li a:hover{
+  background: #2563eb;
+  color: white;
+}
+
+/* Show dropdown on hover (Desktop) */
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+
+/* Responsive */
+.menu-btn{
+  font-size: 28px;
+  display: none;
+  cursor: pointer;
+}
+
+@media(max-width: 900px){
+  .nav-links{
+    position: absolute;
+    right: 0;
+    top: 70px;
+    width: 100%;
+    background: #2563eb;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 0;
+    display: none;
+  }
+
+  .nav-links li{
+    width: 100%;
+  }
+
+  .dropdown-menu{
+    position: static;
+    box-shadow: none;
+    background: #1e40af;
+    border-radius: 0;
+  }
+
+  .dropdown-menu li a{
+    color: white;
+  }
+
+  .menu-btn{
+    display: block;
+  }
+}
+
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">FinTrack</div>
+
+    <ul class="nav-links" id="menu">
+
+      <li><a href="landing.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+
+      <li><a href="services.html">Services</a></li>
+<li><a href="tools.html">Tools</a></li>
+
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="contact.html">Contact</a></li>
+
+      <li><a href="login.html" class="btn login">Login</a></li>
+      <li><a href="signup.html" class="btn signup">Signup</a></li>
+    </ul>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </nav>
+</header>
+
+  <div class="container">
+    <h1>Our Services</h1>
+    <p class="description">
+      Explore our comprehensive suite of financial tools designed to help you grow your wealth.
+      Click on any card to reveal more details.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>📊 Budget Planning</h3>
+        <p class="short">Create custom budgets that work for your lifestyle.</p>
+        <p class="details">Our advanced budgeting algorithms analyze your spending patterns to suggest realistic limits for different categories. Set weekly, monthly, or yearly goals.</p>
+      </div>
+
+      <div class="card">
+        <h3>📈 Investment Tracking</h3>
+        <p class="short">Monitor your portfolio performance in real-time.</p>
+        <p class="details">Connect your brokerage accounts to see all your investments in one place. Track stocks, crypto, and mutual funds with real-time market data.</p>
+      </div>
+
+      <div class="card">
+        <h3>🛡️ Fraud Protection</h3>
+        <p class="short">AI-powered security to keep your money safe.</p>
+        <p class="details">We use machine learning to detect suspicious activity on your linked accounts. Get instant alerts for unusual transactions or location mismatches.</p>
+      </div>
+
+      <div class="card">
+        <h3>💳 Smart Cards</h3>
+        <p class="short">Virtual cards for secure online shopping.</p>
+        <p class="details">Generate disposable virtual cards for online purchases. Set spending limits and merchant locks to prevent unauthorized charges.</p>
+      </div>
+
+      <div class="card">
+        <h3>👨‍👩‍👧 Family Plans</h3>
+        <p class="short">Manage household finances together.</p>
+        <p class="details">Share accounts with family members while maintaining individual privacy. Assign allowances, track shared bills, and save for common goals.</p>
+      </div>
+
+      <div class="card">
+        <h3>🌐 Global Transfers</h3>
+        <p class="short">Send money internationally with low fees.</p>
+        <p class="details">Transfer funds to over 100 countries at the real exchange rate. No hidden fees, just fast and secure international payments.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
+function toggleMenu(){
+  const menu = document.getElementById("menu");
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
+  </script>
+
+</body>
+</html>

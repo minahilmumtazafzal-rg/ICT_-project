@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About FinTrack</title>
+<link rel="icon" type="image/png" href="ft.png">
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #e0e7ff; /*  light blue-gray background  */
+      color: #1e3a8a;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Outfit', sans-serif;
+      margin: 0 0 20px 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #1d4ed8; /* blue like index */
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #1e40af; /* darker blue */
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #1d4ed8;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #475569;
+      margin-bottom: 15px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .grid > div {
+      flex: 1;
+      min-width: 280px;
+    }
+
+     /* Image styling */
+        .image-container {
+            position: relative;
+        }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background-color: rgba(29, 78, 216, 0.1); /* blue shadow */
+            transform: rotate(-3deg);
+        border-radius: 20px;
+            z-index: 0;
+        }
+
+        .image-container img {
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      border: 2px solid #3b82f6;
+      border-radius: 10px;
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #3b82f6;
+      color: white;
+    }
+
+    /* Flip Cards */
+    .team-section {
+      display: none;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .team-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .flip-card {
+      background-color: transparent;
+      width: 250px;
+      height: 300px;
+      perspective: 1000px;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 15px;
+    }
+
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .flip-card-front {
+      background-color: #ffffff;
+    }
+
+    .flip-card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .flip-card-back {
+      background-color: #3b82f6; /* blue background */
+      color: white;
+      transform: rotateY(180deg);
+      padding: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .grid {
+        flex-direction: column;
+      }
+      .team-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+header{
+  width: 100%;
+  background: #2563eb;
+}
+
+.navbar{
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.logo{
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.nav-links{
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links li{
+  position: relative;
+}
+
+.nav-links li a{
+  text-decoration: none;
+  color: white;
+  padding: 8px 12px;
+  display: block;
+  border-radius: 6px;
+}
+
+.nav-links li a:hover{
+  background: white;
+  color: #2563eb;
+}
+
+/* Buttons */
+.btn.login{
+  background: white;
+  color: #2563eb;
+}
+
+.btn.signup{
+  background: #1e40af;
+}
+
+/* Dropdown */
+.dropdown-menu{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  list-style: none;
+  padding: 10px 0;
+  border-radius: 10px;
+  min-width: 180px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  display: none;
+  z-index: 5;
+}
+
+.dropdown-menu li a{
+  color: #2563eb;
+  padding: 10px 15px;
+}
+
+.dropdown-menu li a:hover{
+  background: #2563eb;
+  color: white;
+}
+
+/* Show dropdown on hover (Desktop) */
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+
+/* Responsive */
+.menu-btn{
+  font-size: 28px;
+  display: none;
+  cursor: pointer;
+}
+
+@media(max-width: 900px){
+  .nav-links{
+    position: absolute;
+    right: 0;
+    top: 70px;
+    width: 100%;
+    background: #2563eb;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 0;
+    display: none;
+  }
+
+  .nav-links li{
+    width: 100%;
+  }
+
+  .dropdown-menu{
+    position: static;
+    box-shadow: none;
+    background: #1e40af;
+    border-radius: 0;
+  }
+
+  .dropdown-menu li a{
+    color: white;
+  }
+
+  .menu-btn{
+    display: block;
+  }
+}
+
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">FinTrack</div>
+
+    <ul class="nav-links" id="menu">
+
+      <li><a href="landing.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Sercvices</a></li>
+     <li><a href="tools.html">Tools</a></li>
+      
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="contact.html">Contact</a></li>
+
+      <li><a href="login.html" class="btn login">Login</a></li>
+      <li><a href="signup.html" class="btn signup">Signup</a></li>
+    </ul>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </nav>
+</header>
+
+  <div class="container">
+    <h1>About FinTrack</h1>
+    <p style="text-align:center; max-width:700px; margin:0 auto 50px auto;">
+      We are on a mission to democratize financial freedom through smart technology and intuitive design.
+    </p>
+
+    <div class="grid">
+      <div class="image-container">
+        <img src="img4.jpg" alt="Team working">
+      </div>
+      <div>
+        <h2>Our Story</h2>
+        <p>
+          Founded in 2024, FinTrack started with a simple idea: managing money shouldn't be complicated.
+        </p>
+        <p>
+          By combining professional-grade analytics with consumer-friendly design, we help thousands of users make better financial decisions every day.
+        </p>
+        <button class="btn" id="meetTeamBtn">Meet the Team</button>
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="team-section" id="teamSection">
+      <h2>Our Team</h2>
+      <div class="team-grid">
+        <!-- Flip Card 1 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="img6.jpg" alt="Member 1">
+            </div>
+            <div class="flip-card-back">
+              <h3>Sara Iqbal</h3>
+              <p>CEO & Founder</p>
+            </div>
+          </div>
+        </div>
+        <!-- Flip Card 2 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="img7.jpg" alt="Member 2">
+            </div>
+            <div class="flip-card-back">
+              <h3>Meer Hassan</h3>
+              <p>CTO</p>
+            </div>
+          </div>
+        </div>
+        <!-- Flip Card 3 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="img8.jpg" alt="Member 3">
+            </div>
+            <div class="flip-card-back">
+              <h3>Ahmed Khan</h3>
+              <p>Lead Designer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script>
+    const btn = document.getElementById('meetTeamBtn');
+    const teamSection = document.getElementById('teamSection');
+
+    btn.addEventListener('click', () => {
+      teamSection.style.display = 'block';
+      teamSection.scrollIntoView({ behavior: 'smooth' });
+    });
+function toggleMenu(){
+  const menu = document.getElementById("menu");
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
+  </script>
+</body>
+</html>

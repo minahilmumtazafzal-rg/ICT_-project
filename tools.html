@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productivity Tools - FinTrack</title>
+<link rel="icon" type="image/png" href="ft.png">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #e0e7ff; /* light blue-gray */
+      margin: 0;
+      padding: 0;
+      color: #1e3a8a; /* dark blue text */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #3b82f6; /* primary blue */
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #1e40af;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .tool-card {
+      background: white;
+      flex: 1;
+      min-width: 300px;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Todo List */
+    #todoList input {
+      padding: 10px;
+      width: 70%;
+      border-radius: 10px;
+      border: 1px solid #3b82f6; /* blue border */
+      font-size: 1rem;
+      color: #1e3a8a;
+    }
+
+    #todoList input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 5px rgba(37,99,235,0.5);
+    }
+
+    #todoList button {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      background-color: #3b82f6;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: background 0.3s;
+    }
+
+    #todoList button:hover {
+      background-color: #2563eb;
+    }
+
+#todoList ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#todoList li {
+  background: #f0f4f8;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #1e3a8a;
+}
+
+#todoList li button {
+  background: #ef4444;
+  margin-left: 0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  color: white;
+}
+
+#todoList li button:hover {
+  background: #b91c1c;
+}
+
+    li button {
+      background: #ef4444; /* red */
+      margin-left: 0;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      color: white;
+    }
+
+    li button:hover {
+      background: #b91c1c;
+    }
+
+    /* Countdown Timer */
+    #countdown input {
+      width: 60px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #3b82f6;
+      margin-right: 10px;
+      color: #1e3a8a;
+    }
+
+    #countdown input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 5px rgba(37,99,235,0.5);
+    }
+
+    #countdown button {
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      background-color: #3b82f6;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #countdown button:hover {
+      background-color: #2563eb;
+    }
+
+    #timerDisplay {
+      margin-top: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #3b82f6;
+    }
+
+    /* Image modal */
+    .image-card {
+      background: #f0f4f8;
+      padding: 20px;
+      border-radius: 20px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .image-card h2 {
+      color: #3b82f6;
+      margin-bottom: 15px;
+    }
+
+    .image-card img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .image-card img:hover {
+      transform: scale(1.05);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top:0;
+      left:0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 15px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+header{
+  width: 100%;
+  background: #2563eb;
+}
+
+.navbar{
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.logo{
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.nav-links{
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links li{
+  position: relative;
+}
+
+.nav-links li a{
+  text-decoration: none;
+  color: white;
+  padding: 8px 12px;      /* SAME AS DASHBOARD */
+  display: block;         /* SAME AS DASHBOARD */
+  border-radius: 6px;     /* SAME AS DASHBOARD */
+}
+
+.nav-links li a:hover{
+  background: white;      /* SAME AS DASHBOARD */
+  color: #2563eb;
+}
+
+/* Buttons */
+.btn.login{
+  background: white;
+  color: #2563eb;
+}
+
+.btn.signup{
+  background: #1e40af;
+}
+
+/* Dropdown */
+.dropdown-menu{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  list-style: none;
+  padding: 10px 0;
+  border-radius: 10px;
+  min-width: 180px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  display: none;
+  z-index: 5;
+}
+
+.dropdown-menu li a{
+  color: #2563eb;
+  padding: 10px 15px;
+}
+
+.dropdown-menu li a:hover{
+  background: #2563eb;
+  color: white;
+}
+
+/* Show dropdown on hover (Desktop) */
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+
+/* Responsive */
+.menu-btn{
+  font-size: 28px;
+  display: none;
+  cursor: pointer;
+}
+
+@media(max-width: 900px){
+  .nav-links{
+    position: absolute;
+    right: 0;
+    top: 70px;
+    width: 100%;
+    background: #2563eb;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 0;
+    display: none;
+  }
+
+  .nav-links li{
+    width: 100%;
+  }
+
+  .dropdown-menu{
+    position: static;
+    box-shadow: none;
+    background: #1e40af;
+    border-radius: 0;
+  }
+
+  .dropdown-menu li a{
+    color: white;
+  }
+
+  .menu-btn{
+    display: block;
+  }
+}
+
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">FinTrack</div>
+
+    <ul class="nav-links" id="menu">
+
+      <li><a href="landing.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+
+      <li><a href="services.html">Services</a></li>
+      <li><a href="tools.html">Tools</a></li>
+
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="contact.html">Contact</a></li>
+
+      <li><a href="login.html" class="btn login">Login</a></li>
+      <li><a href="signup.html" class="btn signup">Signup</a></li>
+    </ul>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </nav>
+</header>
+
+  <div class="container">
+    <h1>Productivity Tools</h1>
+    <p>Stay organized and focused with our integrated productivity suite.</p>
+
+    <div class="grid">
+      <!-- Todo List -->
+      <div class="tool-card" id="todoList">
+        <h2>Todo List</h2>
+        <input type="text" id="taskInput" placeholder="New task">
+        <button id="addTask">Add</button>
+        <ul id="tasks"></ul>
+      </div>
+
+      <!-- Countdown Timer -->
+      <div class="tool-card" id="countdown">
+        <h2>Countdown Timer</h2>
+        <input type="number" id="minutes" placeholder="Minutes" min="0">
+        <button id="startTimer">Start</button>
+        <div id="timerDisplay">00:00</div>
+      </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="image-card">
+      <h2>Inspiration Corner</h2>
+      <img id="previewImage" src="img9.jpeg">
+      <p>Click image to enlarge</p>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="imageModal">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <img id="modalImage" src="" alt="Enlarged">
+  </div>
+
+  <script>
+    // Todo List
+    const taskInput = document.getElementById('taskInput');
+    const addTaskBtn = document.getElementById('addTask');
+    const tasksUl = document.getElementById('tasks');
+
+    addTaskBtn.addEventListener('click', () => {
+      const task = taskInput.value.trim();
+      if(task) {
+        const li = document.createElement('li');
+        li.textContent = task;
+        const delBtn = document.createElement('button');
+        delBtn.textContent = 'Delete';
+        delBtn.onclick = () => li.remove();
+        li.appendChild(delBtn);
+        tasksUl.appendChild(li);
+        taskInput.value = '';
+      }
+    });
+
+    // Countdown Timer
+    let timer;
+    const startBtn = document.getElementById('startTimer');
+    const timerDisplay = document.getElementById('timerDisplay');
+
+    startBtn.addEventListener('click', () => {
+      clearInterval(timer);
+      let mins = parseInt(document.getElementById('minutes').value);
+      if(isNaN(mins) || mins <= 0) return;
+      let timeLeft = mins * 60;
+
+      timerDisplay.textContent = `${mins.toString().padStart(2,'0')}:00`;
+
+      timer = setInterval(() => {
+        if(timeLeft <= 0){
+          clearInterval(timer);
+          alert('Time is up!');
+          return;
+        }
+        timeLeft--;
+        const m = Math.floor(timeLeft / 60);
+        const s = timeLeft % 60;
+        timerDisplay.textContent = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+      }, 1000);
+    });
+
+    // Image Modal
+    const previewImage = document.getElementById('previewImage');
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+
+    previewImage.addEventListener('click', () => {
+      modal.style.display = 'flex';
+      modalImage.src = previewImage.src;
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if(e.target == modal) modal.style.display = 'none';
+    });
+function toggleMenu(){
+  const menu = document.getElementById("menu");
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
+  </script>
+
+</body>
+</html>

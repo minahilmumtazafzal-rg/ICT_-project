@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - FinTrack</title>
+<link rel="icon" type="image/png" href="ft.png">
+  <style>
+    /* General styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #e0e7ff; /* light blue-gray background */
+      color: #1e3a8a; /* dark blue text */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 15px 0;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #3b82f6; /* primary blue */
+    }
+
+    h2 {
+      color: #3b82f6;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      color: #3b82f6;
+    }
+
+    p {
+      color: #1e40af; /* dark blue */
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Grid layout */
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .grid > div {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    /* Contact info icons */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .icon-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(59,130,246,0.1); /* blue background */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #3b82f6; /* blue icon */
+    }
+
+    /* Form card */
+    .card {
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #3b82f6; /* blue border */
+      font-size: 1rem;
+      color: #1e3a8a;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #2563eb; /* darker blue on focus */
+      box-shadow: 0 0 5px rgba(37,99,235,0.5);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      background-color: #3b82f6; /* primary blue */
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #2563eb; /* darker blue on hover */
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .grid {
+        flex-direction: column;
+      }
+    }
+header{
+  width: 100%;
+  background: #2563eb;
+}
+
+.navbar{
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.logo{
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.nav-links{
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links li{
+  position: relative;
+}
+
+.nav-links li a{
+  text-decoration: none;
+  color: white;
+  padding: 8px 12px;
+  display: block;
+  border-radius: 6px;
+}
+
+.nav-links li a:hover{
+  background: white;
+  color: #2563eb;
+}
+
+/* Buttons */
+.btn.login{
+  background: white;
+  color: #2563eb;
+}
+
+.btn.signup{
+  background: #1e40af;
+}
+
+/* Dropdown */
+.dropdown-menu{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  list-style: none;
+  padding: 10px 0;
+  border-radius: 10px;
+  min-width: 180px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  display: none;
+  z-index: 5;
+}
+
+.dropdown-menu li a{
+  color: #2563eb;
+  padding: 10px 15px;
+}
+
+.dropdown-menu li a:hover{
+  background: #2563eb;
+  color: white;
+}
+
+/* Show dropdown on hover (Desktop) */
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+
+/* Responsive */
+.menu-btn{
+  font-size: 28px;
+  display: none;
+  cursor: pointer;
+}
+
+@media(max-width: 900px){
+  .nav-links{
+    position: absolute;
+    right: 0;
+    top: 70px;
+    width: 100%;
+    background: #2563eb;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 0;
+    display: none;
+  }
+
+  .nav-links li{
+    width: 100%;
+  }
+
+  .dropdown-menu{
+    position: static;
+    box-shadow: none;
+    background: #1e40af;
+    border-radius: 0;
+  }
+
+  .dropdown-menu li a{
+    color: white;
+  }
+
+  .menu-btn{
+    display: block;
+  }
+}
+
+  </style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">FinTrack</div>
+
+    <ul class="nav-links" id="menu">
+
+      <li><a href="landing.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+
+      <li><a href="services.html">Services</a></li>
+      <li><a href="tools.html">Tools</a></li>
+
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="contact.html">Contact</a></li>
+
+      <li><a href="login.html" class="btn login">Login</a></li>
+      <li><a href="signup.html" class="btn signup">Signup</a></li>
+    </ul>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </nav>
+</header>
+
+  <div class="container">
+    <div class="grid">
+      <!-- Contact Info -->
+      <div>
+        <h1>Get in Touch</h1>
+        <p style="margin-bottom:40px;">Have questions about our platform? Our team is here to help you achieve your financial goals.</p>
+
+        <div class="contact-item">
+          <div class="icon-circle">&#9993;</div>
+          <div>
+            <h3>Email Us</h3>
+            <p>support@fintrack.com</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="icon-circle">&#9742;</div>
+          <div>
+            <h3>Call Us</h3>
+            <p>+92 3001234567</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="icon-circle">&#128205;</div>
+          <div>
+            <h3>Visit Us</h3>
+            <p>123 Finance Street, Islamabad, Pakistan</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="card">
+        <h2>Send a Message</h2>
+        <form onsubmit="event.preventDefault(); alert('Message sent!');">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Ali"required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Haider"required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="ali@example.com"required>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" placeholder="How can we help?"required>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Type your message here..."required></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

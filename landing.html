@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinTrack - Smart Finance</title>
+<link rel="icon" type="image/png" href="ft.png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #e0e7ff; /* light blue-gray background */
+      color: #1e3a8a; /* dark blue text */
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 20px;
+      text-align: center;
+      background: linear-gradient(to bottom, #ffffff, rgba(226, 232, 240, 0.3));
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #2563eb; /* Blue */
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #2563eb, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin: 0 auto 30px;
+      max-width: 700px;
+      color: #475569;
+    }
+
+    .hero .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background-color: #2563eb;
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #1e40af;
+    }
+
+    .btn-outline {
+      background: white;
+      border: 2px solid #2563eb;
+      color: #2563eb;
+    }
+    .btn-outline:hover {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    /* Carousel */
+    .carousel {
+      max-width: 900px;
+      margin: 50px auto 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .carousel img {
+      width: 100%;
+      display: none;
+      border-radius: 20px;
+    }
+
+    .carousel img.active {
+      display: block;
+    }
+
+    .carousel-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .carousel-buttons button {
+      background-color: rgba(255,255,255,0.75);
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 22px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .carousel-buttons button:hover {
+      background-color: rgba(37,99,235,0.8);
+      color: white;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #2563eb;
+    }
+
+    .features-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 300px;
+      flex: 1;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .feature-icon {
+      font-size: 35px;
+      color: #2563eb;
+      margin-bottom: 15px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #1e3a8a;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+      color: #475569;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .features-grid { flex-direction: column; }
+    }
+header{
+  width: 100%;
+  background: #2563eb;
+}
+
+.navbar{
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.logo{
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.nav-links{
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links li{
+  position: relative;
+}
+
+.nav-links li a{
+  text-decoration: none;
+  color: white;
+  padding: 8px 12px;
+  display: block;
+  border-radius: 6px;
+}
+
+.nav-links li a:hover{
+  background: white;
+  color: #2563eb;
+}
+
+/* Buttons */
+.btn.login{
+  background: white;
+  color: #2563eb;
+}
+
+.btn.signup{
+  background: #1e40af;
+}
+
+/* Dropdown */
+.dropdown-menu{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  list-style: none;
+  padding: 10px 0;
+  border-radius: 10px;
+  min-width: 180px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  display: none;
+  z-index: 5;
+}
+
+.dropdown-menu li a{
+  color: #2563eb;
+  padding: 10px 15px;
+}
+
+.dropdown-menu li a:hover{
+  background: #2563eb;
+  color: white;
+}
+
+/* Show dropdown on hover (Desktop) */
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+
+/* Responsive */
+.menu-btn{
+  font-size: 28px;
+  display: none;
+  cursor: pointer;
+}
+
+@media(max-width: 900px){
+  .nav-links{
+    position: absolute;
+    right: 0;
+    top: 70px;
+    width: 100%;
+    background: #2563eb;
+    flex-direction: column;
+    text-align: center;
+    padding: 15px 0;
+    display: none;
+  }
+
+  .nav-links li{
+    width: 100%;
+  }
+
+  .dropdown-menu{
+    position: static;
+    box-shadow: none;
+    background: #1e40af;
+    border-radius: 0;
+  }
+
+  .dropdown-menu li a{
+    color: white;
+  }
+
+  .menu-btn{
+    display: block;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+<header>
+  <nav class="navbar">
+    <div class="logo">FinTrack</div>
+
+    <ul class="nav-links" id="menu">
+
+      <li><a href="landing.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+
+      <li><a href="services.html">Services</a></li>
+      <li><a href="tools.html">Tools</a></li>
+
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="contact.html">Contact</a></li>
+
+      <li><a href="login.html" class="btn login">Login</a></li>
+      <li><a href="signup.html" class="btn signup">Signup</a></li>
+    </ul>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  </nav>
+</header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Smart Finance for <span class="gradient-text">Modern Living</span></h1>
+      <p>Track expenses, visualize your spending, and reach your financial goals with our intuitive platform.</p>
+
+      <div class="buttons">
+        <a href="dashboard.html" class="btn btn-primary">Get Started →</a>
+        <a href="about.html" class="btn btn-outline">Learn More</a>
+ <a href="login.html" class="btn btn-primary">Login</a>
+  <a href="signup.html" class="btn btn-outline">Sign Up</a>
+      </div>
+
+      <!-- Carousel -->
+      <div class="carousel">
+        <img src="img2.jpg" class="active" alt="Slide 1">
+        <img src="img1.jpg" alt="Slide 2">
+        <img src="img3.jpg" alt="Slide 3">
+
+        <div class="carousel-buttons">
+          <button id="prev">❮</button>
+          <button id="next">❯</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2>Why Choose FinTrack?</h2>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Real-time Tracking</h3>
+          <p>Monitor your expenses live with intelligent charting tools.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Secure Data</h3>
+          <p>Your financial data is encrypted and protected at every level.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Goal Setting</h3>
+          <p>Create budgets and savings goals to stay on track.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Carousel
+    const slides = document.querySelectorAll('.carousel img');
+    let index = 0;
+
+    const showSlide = i => {
+      slides.forEach(s => s.classList.remove('active'));
+      slides[i].classList.add('active');
+    };
+
+    document.getElementById('prev').onclick = () => {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    };
+
+    document.getElementById('next').onclick = () => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    };
+
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }, 5000);
+function toggleMenu(){
+  const menu = document.getElementById("menu");
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+}
+  </script>
+
+</body>
+</html>
